@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>July Fourth Dinner Menu</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f8f4ec;
+      --ink: #191714;
+      --muted: #777069;
+      --rule: #c9bca9;
+      --red: #8f2d2a;
+      --blue: #253f68;
+      --gold: #a87d38;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(143, 45, 42, 0.06), transparent 22%, transparent 78%, rgba(37, 63, 104, 0.07)),
+        var(--paper);
+      color: var(--ink);
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.45;
+    }
+
+    .page {
+      width: min(960px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+
+    .menu {
+      position: relative;
+      padding: clamp(32px, 6vw, 68px);
+      border: 1px solid var(--rule);
+      background: rgba(255, 252, 245, 0.74);
+      box-shadow: 0 24px 70px rgba(52, 42, 30, 0.12);
+    }
+
+    .menu::before,
+    .menu::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      inset: 14px;
+      border: 1px solid rgba(168, 125, 56, 0.34);
+    }
+
+    .menu::after {
+      inset: 22px;
+      border-color: rgba(201, 188, 169, 0.55);
+    }
+
+    header,
+    section,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 8vw, 5.8rem);
+      font-weight: 400;
+      line-height: 0.92;
+    }
+
+    .subtitle {
+      max-width: 560px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.16rem);
+      font-style: italic;
+    }
+
+    .tricolor {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      width: min(220px, 60%);
+      height: 2px;
+      margin: 28px auto 0;
+      background: var(--rule);
+    }
+
+    .tricolor span:nth-child(1) {
+      background: var(--red);
+    }
+
+    .tricolor span:nth-child(2) {
+      background: var(--gold);
+    }
+
+    .tricolor span:nth-child(3) {
+      background: var(--blue);
+    }
+
+    .course {
+      display: grid;
+      grid-template-columns: minmax(110px, 170px) 1fr;
+      gap: clamp(18px, 4vw, 42px);
+      padding: 30px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .course:first-of-type {
+      border-top: 0;
+    }
+
+    .course-title {
+      margin: 3px 0 0;
+      color: var(--blue);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .item {
+      margin-bottom: 26px;
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin: 0 0 6px;
+      font-size: clamp(1.34rem, 3vw, 2rem);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    h2::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      min-width: 32px;
+      background: linear-gradient(90deg, rgba(201, 188, 169, 0.86), transparent);
+    }
+
+    .description {
+      margin: 0;
+      max-width: 620px;
+      color: #3f3a34;
+      font-size: clamp(1rem, 2.2vw, 1.1rem);
+    }
+
+    .detail {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .optional h2 {
+      color: #3a332b;
+    }
+
+    .optional .course-title {
+      color: var(--red);
+    }
+
+    footer {
+      margin-top: 36px;
+      padding-top: 26px;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.98rem;
+      font-style: italic;
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        width: min(100% - 20px, 960px);
+        padding: 20px 0;
+      }
+
+      .menu {
+        padding: 34px 24px;
+      }
+
+      .menu::before,
+      .menu::after {
+        inset: 10px;
+      }
+
+      .course {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 24px 0;
+      }
+
+      h2 {
+        display: block;
+      }
+
+      h2::after {
+        display: none;
+      }
+    }
+
+    @media print {
+      body {
+        background: var(--paper);
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      .menu {
+        border: 0;
+        box-shadow: none;
+        padding: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="menu" aria-labelledby="menu-title">
+      <header>
+        <p class="eyebrow">An Apartment Supper for Eight to Ten</p>
+        <h1 id="menu-title">July Fourth</h1>
+        <p class="subtitle">Smoke, cola, corn, watermelon, and bright pickles, arranged with a little ceremony.</p>
+        <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
+      </header>
+
+      <section class="course" aria-labelledby="first-course">
+        <p class="course-title" id="first-course">To Begin</p>
+        <div>
+          <div class="item">
+            <h2>Smoked Whitefish Caesar</h2>
+            <p class="description">Crisp romaine, smoked whitefish, rye breadcrumbs, fried capers, sharp lemon dressing, and Parmesan.</p>
+            <p class="detail">Optional everything-spiced watermelon seeds</p>
+          </div>
+          <div class="item">
+            <h2>Compressed Watermelon</h2>
+            <p class="description">Vacuum-sealed watermelon cubes with seasoned juice, pickled rind, mint, scallion, lime, and chile.</p>
+            <p class="detail">Toasted seed crunch</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="course" aria-labelledby="main-course">
+        <p class="course-title" id="main-course">Main Table</p>
+        <div>
+          <div class="item">
+            <h2>Coca-Cola Braised Short Ribs</h2>
+            <p class="description">Slow-braised beef with cola, tamarind, soy, ginger, garlic, black pepper, and a lime-bright finish.</p>
+            <p class="detail">Chilled overnight, defatted, and reheated gently</p>
+          </div>
+          <div class="item">
+            <h2>Buffalo Mac and Cheese</h2>
+            <p class="description">Baked macaroni, hot sauce, cheddar, blue cheese, celery leaf gremolata, scallions, and crisp crumbs.</p>
+            <p class="detail">Pickled celery on the side</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="course" aria-labelledby="drinks-course">
+        <p class="course-title" id="drinks-course">Pitchers</p>
+        <div>
+          <div class="item">
+            <h2>Agua Frescas</h2>
+            <p class="description">Hibiscus ginger, pineapple jalapeno, and cucumber mint, chilled without ice and poured over fresh cubes.</p>
+            <p class="detail">Lightly sweet, high acid, very cold</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="course" aria-labelledby="dessert-course">
+        <p class="course-title" id="dessert-course">Dessert</p>
+        <div>
+          <div class="item">
+            <h2>Sweet Corn Panna Cotta</h2>
+            <p class="description">Silky corn custard with blueberry-lime sauce, a whisper of black pepper, and optional bay.</p>
+            <p class="detail">Cornmeal shortbread or sugared watermelon seeds</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="course optional" aria-labelledby="optional-course">
+        <p class="course-title" id="optional-course">Potential Addition</p>
+        <div>
+          <div class="item">
+            <h2>Miso Black Cod</h2>
+            <p class="description">Sablefish marinated with sake, mirin, white miso, and sugar, then broiled until lacquered and caramelized.</p>
+            <p class="detail">Nobu-style, 2-3 day cure</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Vaguely patriotic. Firmly delicious.
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
